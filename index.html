@@ -432,6 +432,237 @@ nav.scrolled { padding: 18px 36px; }
 
 .cart-sep { height: 1px; background: var(--navy); opacity: 0.08; flex-shrink: 0; }
 
+/* ---- Cart badge ---- */
+.cart-badge {
+  position: absolute;
+  top: -5px; right: -6px;
+  background: var(--gold);
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 7px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.cart-badge.visible { display: flex; }
+
+/* ---- Add-to-cart button on collection cards ---- */
+.c-add-btn {
+  display: inline-block;
+  margin-top: 11px;
+  font-family: 'Cinzel', serif;
+  font-size: 7.5px;
+  letter-spacing: 0.32em;
+  padding-right: 0.32em;
+  color: var(--cream);
+  background: transparent;
+  border: 1px solid rgba(248,244,236,0.45);
+  padding: 7px 14px;
+  cursor: none;
+  opacity: 0;
+  transform: translateY(7px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s, border-color 0.2s, color 0.2s;
+}
+.c-item:hover .c-add-btn { opacity: 1; transform: translateY(0); }
+.c-add-btn:hover { background: var(--cream); color: var(--navy); border-color: var(--cream); }
+.c-add-btn.added { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+/* ---- Cart step 1: item list ---- */
+.cart-step { display: flex; flex-direction: column; gap: 20px; }
+
+.cart-empty-msg {
+  padding: 48px 0;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--navy);
+  opacity: 0.38;
+}
+
+.cart-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(14,18,40,0.06);
+}
+.cart-item-thumb {
+  width: 66px; height: 84px;
+  object-fit: cover; object-position: center top;
+  flex-shrink: 0;
+}
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+.cart-item-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 7px;
+  letter-spacing: 0.3em;
+  color: var(--navy);
+  opacity: 0.38;
+  margin-bottom: 9px;
+}
+.cart-item-size {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--navy);
+  border: 1px solid rgba(14,18,40,0.18);
+  background: transparent;
+  padding: 4px 8px;
+  cursor: pointer;
+  -webkit-appearance: auto;
+  appearance: auto;
+}
+.cart-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.cart-item-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.cart-qty-row { display: flex; align-items: center; gap: 8px; }
+.qty-btn {
+  width: 22px; height: 22px;
+  background: none;
+  border: 1px solid rgba(14,18,40,0.18);
+  color: var(--navy);
+  font-size: 13px;
+  line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: none;
+  transition: background 0.2s, color 0.2s;
+}
+.qty-btn:hover { background: var(--navy); color: var(--cream); }
+.qty-num {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  min-width: 16px;
+  text-align: center;
+  color: var(--navy);
+}
+.cart-item-remove {
+  background: none; border: none;
+  font-size: 15px; line-height: 1;
+  color: var(--navy); opacity: 0.22;
+  cursor: none;
+  transition: opacity 0.2s;
+  padding: 0;
+}
+.cart-item-remove:hover { opacity: 0.65; }
+
+.cart-subtotal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 4px 0 0;
+}
+.cart-subtotal-lbl {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 0.38em;
+  color: var(--navy);
+  opacity: 0.4;
+}
+.cart-subtotal-amt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.cart-next-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 9.5px;
+  letter-spacing: 0.42em;
+  padding-right: 0.42em;
+  color: var(--cream);
+  background: var(--navy);
+  border: none;
+  padding: 16px 24px;
+  cursor: none;
+  width: 100%;
+  transition: background 0.2s;
+}
+.cart-next-btn:hover { background: var(--black); }
+.cart-next-btn:disabled { opacity: 0.3; pointer-events: none; }
+
+/* ---- Cart step 2 header: back button ---- */
+.cart-back-btn {
+  background: none; border: none;
+  font-family: 'Cinzel', serif;
+  font-size: 7.5px;
+  letter-spacing: 0.28em;
+  color: var(--navy);
+  opacity: 0.45;
+  cursor: none;
+  padding: 0;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.cart-back-btn:hover { opacity: 1; }
+
+/* ---- Order summary in step 2 ---- */
+.order-summary {
+  background: rgba(14,18,40,0.03);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.order-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.order-summary-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  color: var(--navy);
+}
+.order-summary-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.order-summary-total {
+  border-top: 1px solid rgba(14,18,40,0.09);
+  padding-top: 9px;
+  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.order-summary-total-lbl {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: var(--navy);
+  opacity: 0.42;
+}
+.order-summary-total-amt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--navy);
+}
+
 .form-block { display: flex; flex-direction: column; gap: 14px; }
 .form-sec-ttl {
   font-family: 'Cinzel', serif;
@@ -1288,7 +1519,8 @@ footer {
     <span></span><span></span><span></span>
   </button>
   <a href="#hero" class="nav-wordmark" id="navLogo">N · P</a>
-  <button class="nav-cart-btn" id="navCartBtn" aria-label="お会計">
+  <button class="nav-cart-btn" id="navCartBtn" aria-label="お会計" style="position:relative;">
+    <span class="cart-badge" id="cartBadge"></span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="9" cy="21" r="1" fill="currentColor" stroke="none"/>
       <circle cx="20" cy="21" r="1" fill="currentColor" stroke="none"/>
@@ -1346,111 +1578,143 @@ footer {
 </div>
 
 <!-- ===================== CHECKOUT ===================== -->
-<div id="cartPanel" role="dialog" aria-modal="true" aria-label="お会計">
+<div id="cartPanel" role="dialog" aria-modal="true" aria-label="カート">
   <div class="cart-bd" id="cartBd"></div>
   <div class="cart-inner">
 
-    <div class="cart-hd">
-      <div class="cart-hd-ttl">ORDER — お会計</div>
-      <button class="cart-close-btn" id="cartClose" aria-label="閉じる"></button>
-    </div>
+    <!-- ===== STEP 1 : カートの中身 ===== -->
+    <div id="cartStep1" class="cart-step">
 
-    <div class="cart-sep"></div>
-
-    <!-- form -->
-    <div class="cart-form-wrap" id="cartFormWrap">
-
-      <!-- 1. お届け先 -->
-      <div class="form-block">
-        <div class="form-sec-ttl">01 — お届け先情報</div>
-        <div class="form-row-2">
-          <div class="f-g">
-            <label class="f-lbl" for="f-sei">姓</label>
-            <input class="f-inp" id="f-sei" type="text" placeholder="山田" autocomplete="family-name">
-          </div>
-          <div class="f-g">
-            <label class="f-lbl" for="f-mei">名</label>
-            <input class="f-inp" id="f-mei" type="text" placeholder="花子" autocomplete="given-name">
-          </div>
-        </div>
-        <div class="f-g">
-          <label class="f-lbl" for="f-email">メールアドレス</label>
-          <input class="f-inp" id="f-email" type="email" placeholder="hello@example.com" autocomplete="email">
-        </div>
-        <div class="f-g">
-          <label class="f-lbl" for="f-tel">電話番号</label>
-          <input class="f-inp" id="f-tel" type="tel" placeholder="090-0000-0000" autocomplete="tel">
-        </div>
-        <div class="form-row-2">
-          <div class="f-g">
-            <label class="f-lbl" for="f-zip">郵便番号</label>
-            <input class="f-inp" id="f-zip" type="text" placeholder="000-0000" autocomplete="postal-code" maxlength="8">
-          </div>
-          <div class="f-g">
-            <label class="f-lbl" for="f-pref">都道府県</label>
-            <select class="f-inp" id="f-pref" autocomplete="address-level1">
-              <option value="" disabled selected>選択</option>
-              <option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option><option>山形県</option><option>福島県</option>
-              <option>茨城県</option><option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option>
-              <option>新潟県</option><option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option><option>岐阜県</option>
-              <option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option><option>京都府</option><option>大阪府</option><option>兵庫県</option>
-              <option>奈良県</option><option>和歌山県</option><option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option>
-              <option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option><option>佐賀県</option><option>長崎県</option>
-              <option>熊本県</option><option>大分県</option><option>宮崎県</option><option>鹿児島県</option><option>沖縄県</option>
-            </select>
-          </div>
-        </div>
-        <div class="f-g">
-          <label class="f-lbl" for="f-city">市区町村</label>
-          <input class="f-inp" id="f-city" type="text" placeholder="渋谷区" autocomplete="address-level2">
-        </div>
-        <div class="f-g">
-          <label class="f-lbl" for="f-addr">番地・建物名</label>
-          <input class="f-inp" id="f-addr" type="text" placeholder="1-2-3 ○○ビル 101" autocomplete="street-address">
-        </div>
+      <div class="cart-hd">
+        <div class="cart-hd-ttl">CART — カート</div>
+        <button class="cart-close-btn" id="cartClose" aria-label="閉じる"></button>
       </div>
 
       <div class="cart-sep"></div>
 
-      <!-- 2. お支払い -->
-      <div class="form-block">
-        <div class="form-sec-ttl">02 — お支払い情報</div>
-        <div class="f-g">
-          <label class="f-lbl" for="f-card">カード番号</label>
-          <input class="f-inp" id="f-card" type="text" placeholder="0000  0000  0000  0000" maxlength="19" inputmode="numeric">
-        </div>
-        <div class="form-row-3">
-          <div class="f-g">
-            <label class="f-lbl" for="f-exp">有効期限</label>
-            <input class="f-inp" id="f-exp" type="text" placeholder="MM / YY" maxlength="7" inputmode="numeric">
-          </div>
-          <div class="f-g">
-            <label class="f-lbl" for="f-cvv">セキュリティコード</label>
-            <input class="f-inp" id="f-cvv" type="text" placeholder="CVV" maxlength="4" inputmode="numeric">
-          </div>
-          <div></div>
-        </div>
+      <div id="cartEmptyMsg" class="cart-empty-msg">カートに商品がありません</div>
+
+      <div id="cartItemsList"></div>
+
+      <div id="cartSubtotalRow" class="cart-subtotal-row" style="display:none;">
+        <span class="cart-subtotal-lbl">SUBTOTAL</span>
+        <span class="cart-subtotal-amt" id="cartTotalAmt">¥0</span>
       </div>
 
-      <button class="cart-submit" id="cartSubmit">注文を確定する</button>
-
-      <div class="ssl-row">
-        <svg width="10" height="12" viewBox="0 0 10 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
-          <rect x="1" y="5" width="8" height="6" rx="1"/>
-          <path d="M3 5V3.5a2 2 0 0 1 4 0V5"/>
-        </svg>
-        SSL 暗号化通信
-      </div>
-      <div class="cart-note">ご注文確認後、メールにてご連絡いたします。<br>お支払いはご注文確定後に処理されます。</div>
+      <button class="cart-next-btn" id="cartNextBtn" disabled>お会計に進む →</button>
 
     </div>
 
-    <!-- success -->
-    <div class="cart-success" id="cartSuccess">
-      <div class="cart-success-moon"></div>
-      <h3>ご注文ありがとうございます</h3>
-      <p>ご確認メールをお送りしました。<br><em>Grazie mille.</em></p>
-    </div>
+    <!-- ===== STEP 2 : お会計フォーム ===== -->
+    <div id="cartStep2" class="cart-step" style="display:none;">
+
+      <div class="cart-hd">
+        <button class="cart-back-btn" id="cartBackBtn">← カートに戻る</button>
+        <div class="cart-hd-ttl">ORDER — お会計</div>
+        <button class="cart-close-btn" id="cartClose2" aria-label="閉じる"></button>
+      </div>
+
+      <div class="cart-sep"></div>
+
+      <!-- 注文内容サマリー -->
+      <div class="order-summary" id="orderSummary"></div>
+
+      <!-- form -->
+      <div class="cart-form-wrap" id="cartFormWrap">
+
+        <!-- 1. お届け先 -->
+        <div class="form-block">
+          <div class="form-sec-ttl">01 — お届け先情報</div>
+          <div class="form-row-2">
+            <div class="f-g">
+              <label class="f-lbl" for="f-sei">姓</label>
+              <input class="f-inp" id="f-sei" type="text" placeholder="山田" autocomplete="family-name">
+            </div>
+            <div class="f-g">
+              <label class="f-lbl" for="f-mei">名</label>
+              <input class="f-inp" id="f-mei" type="text" placeholder="花子" autocomplete="given-name">
+            </div>
+          </div>
+          <div class="f-g">
+            <label class="f-lbl" for="f-email">メールアドレス</label>
+            <input class="f-inp" id="f-email" type="email" placeholder="hello@example.com" autocomplete="email">
+          </div>
+          <div class="f-g">
+            <label class="f-lbl" for="f-tel">電話番号</label>
+            <input class="f-inp" id="f-tel" type="tel" placeholder="090-0000-0000" autocomplete="tel">
+          </div>
+          <div class="form-row-2">
+            <div class="f-g">
+              <label class="f-lbl" for="f-zip">郵便番号</label>
+              <input class="f-inp" id="f-zip" type="text" placeholder="000-0000" autocomplete="postal-code" maxlength="8">
+            </div>
+            <div class="f-g">
+              <label class="f-lbl" for="f-pref">都道府県</label>
+              <select class="f-inp" id="f-pref" autocomplete="address-level1">
+                <option value="" disabled selected>選択</option>
+                <option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option><option>山形県</option><option>福島県</option>
+                <option>茨城県</option><option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option>
+                <option>新潟県</option><option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option><option>岐阜県</option>
+                <option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option><option>京都府</option><option>大阪府</option><option>兵庫県</option>
+                <option>奈良県</option><option>和歌山県</option><option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option>
+                <option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option><option>佐賀県</option><option>長崎県</option>
+                <option>熊本県</option><option>大分県</option><option>宮崎県</option><option>鹿児島県</option><option>沖縄県</option>
+              </select>
+            </div>
+          </div>
+          <div class="f-g">
+            <label class="f-lbl" for="f-city">市区町村</label>
+            <input class="f-inp" id="f-city" type="text" placeholder="渋谷区" autocomplete="address-level2">
+          </div>
+          <div class="f-g">
+            <label class="f-lbl" for="f-addr">番地・建物名</label>
+            <input class="f-inp" id="f-addr" type="text" placeholder="1-2-3 ○○ビル 101" autocomplete="street-address">
+          </div>
+        </div>
+
+        <div class="cart-sep"></div>
+
+        <!-- 2. お支払い -->
+        <div class="form-block">
+          <div class="form-sec-ttl">02 — お支払い情報</div>
+          <div class="f-g">
+            <label class="f-lbl" for="f-card">カード番号</label>
+            <input class="f-inp" id="f-card" type="text" placeholder="0000  0000  0000  0000" maxlength="19" inputmode="numeric">
+          </div>
+          <div class="form-row-3">
+            <div class="f-g">
+              <label class="f-lbl" for="f-exp">有効期限</label>
+              <input class="f-inp" id="f-exp" type="text" placeholder="MM / YY" maxlength="7" inputmode="numeric">
+            </div>
+            <div class="f-g">
+              <label class="f-lbl" for="f-cvv">セキュリティコード</label>
+              <input class="f-inp" id="f-cvv" type="text" placeholder="CVV" maxlength="4" inputmode="numeric">
+            </div>
+            <div></div>
+          </div>
+        </div>
+
+        <button class="cart-submit" id="cartSubmit">注文を確定する</button>
+
+        <div class="ssl-row">
+          <svg width="10" height="12" viewBox="0 0 10 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+            <rect x="1" y="5" width="8" height="6" rx="1"/>
+            <path d="M3 5V3.5a2 2 0 0 1 4 0V5"/>
+          </svg>
+          SSL 暗号化通信
+        </div>
+        <div class="cart-note">ご注文確認後、メールにてご連絡いたします。<br>お支払いはご注文確定後に処理されます。</div>
+
+      </div>
+
+      <!-- success -->
+      <div class="cart-success" id="cartSuccess">
+        <div class="cart-success-moon"></div>
+        <h3>ご注文ありがとうございます</h3>
+        <p>ご確認メールをお送りしました。<br><em>Grazie mille.</em></p>
+      </div>
+
+    </div><!-- /cartStep2 -->
 
   </div>
 </div>
@@ -1570,52 +1834,57 @@ footer {
   <div class="collection-grid reveal reveal-delay-1">
 
     <!-- Item 1: sweatsuit set (tall hero) -->
-    <div class="c-item c-item-1 has-photo">
+    <div class="c-item c-item-1 has-photo" data-id="1" data-name="Set — 余白" data-name-jp="YOHAKU SWEAT SET" data-price="28000" data-img="images/c1.jpg">
       <img class="c-photo" src="images/c1.jpg" alt="NOA PIENA Sweat Set" style="object-position:center center;">
       <div class="c-bg"></div>
       <div class="c-info">
         <div class="c-name-it">Set — 余白</div>
         <div class="c-name-jp">YOHAKU SWEAT SET</div>
+        <button class="c-add-btn">+ ADD TO CART</button>
       </div>
     </div>
 
     <!-- Item 2: street style woman -->
-    <div class="c-item c-item-2 has-photo">
+    <div class="c-item c-item-2 has-photo" data-id="2" data-name="Mini — 霞" data-name-jp="KASUMI RUFFLE MINI" data-price="18000" data-img="images/c2.jpg">
       <img class="c-photo" src="images/c2.jpg" alt="NOA PIENA Street Style" style="object-position:center 20%;">
       <div class="c-bg"></div>
       <div class="c-info">
         <div class="c-name-it">Mini — 霞</div>
         <div class="c-name-jp">KASUMI RUFFLE MINI</div>
+        <button class="c-add-btn">+ ADD TO CART</button>
       </div>
     </div>
 
     <!-- Item 3: fashion illustration -->
-    <div class="c-item c-item-3 has-photo">
+    <div class="c-item c-item-3 has-photo" data-id="3" data-name="Look — 月影" data-name-jp="LUNA SS LOOK" data-price="32000" data-img="images/c3.jpg">
       <img class="c-photo" src="images/c3.jpg" alt="NOA PIENA SS Look" style="object-position:center 15%;">
       <div class="c-bg"></div>
       <div class="c-info">
         <div class="c-name-it">Look — 月影</div>
         <div class="c-name-jp">LUNA SS LOOK</div>
+        <button class="c-add-btn">+ ADD TO CART</button>
       </div>
     </div>
 
     <!-- Item 4: man in wicker chair -->
-    <div class="c-item c-item-4 has-photo">
+    <div class="c-item c-item-4 has-photo" data-id="4" data-name="Shirt — 光" data-name-jp="HIKARI LINEN SHIRT" data-price="22000" data-img="images/c4.jpg">
       <img class="c-photo" src="images/c4.jpg" alt="NOA PIENA Linen Shirt" style="object-position:center 15%;">
       <div class="c-bg"></div>
       <div class="c-info">
         <div class="c-name-it">Shirt — 光</div>
         <div class="c-name-jp">HIKARI LINEN SHIRT</div>
+        <button class="c-add-btn">+ ADD TO CART</button>
       </div>
     </div>
 
     <!-- Item 5: man on boat -->
-    <div class="c-item c-item-5 has-photo">
+    <div class="c-item c-item-5 has-photo" data-id="5" data-name="Vest — 静" data-name-jp="SHIZUKA CABLE VEST" data-price="24000" data-img="images/c5.jpg">
       <img class="c-photo" src="images/c5.jpg" alt="NOA PIENA Cable Vest" style="object-position:center 10%;">
       <div class="c-bg"></div>
       <div class="c-info">
         <div class="c-name-it">Vest — 静</div>
         <div class="c-name-jp">SHIZUKA CABLE VEST</div>
+        <button class="c-add-btn">+ ADD TO CART</button>
       </div>
     </div>
 
@@ -1844,16 +2113,123 @@ footer {
     });
   });
 
+  /* --- Cart state --- */
+  var cartItems = [];
+
+  function fmtPrice(n) {
+    return '¥' + n.toLocaleString('ja-JP');
+  }
+
+  function cartTotal() {
+    return cartItems.reduce(function (s, it) { return s + it.price * it.qty; }, 0);
+  }
+
+  function updateBadge() {
+    var badge = document.getElementById('cartBadge');
+    var total = cartItems.reduce(function (s, it) { return s + it.qty; }, 0);
+    badge.textContent = total;
+    if (total > 0) badge.classList.add('visible');
+    else badge.classList.remove('visible');
+  }
+
+  function renderCartItems() {
+    var list      = document.getElementById('cartItemsList');
+    var emptyMsg  = document.getElementById('cartEmptyMsg');
+    var subRow    = document.getElementById('cartSubtotalRow');
+    var totalAmt  = document.getElementById('cartTotalAmt');
+    var nextBtn   = document.getElementById('cartNextBtn');
+
+    list.innerHTML = '';
+
+    if (cartItems.length === 0) {
+      emptyMsg.style.display = '';
+      subRow.style.display   = 'none';
+      nextBtn.disabled = true;
+      return;
+    }
+
+    emptyMsg.style.display = 'none';
+    subRow.style.display   = '';
+    nextBtn.disabled = false;
+
+    cartItems.forEach(function (item) {
+      var row = document.createElement('div');
+      row.className = 'cart-item-row';
+      row.dataset.id = item.id;
+      row.innerHTML =
+        '<img class="cart-item-thumb" src="' + item.img + '" alt="' + item.name + '">' +
+        '<div class="cart-item-info">' +
+          '<div class="cart-item-name">' + item.name + '</div>' +
+          '<div class="cart-item-sub">' + item.nameJp + '</div>' +
+          '<select class="cart-item-size">' +
+            '<option value="">サイズ選択</option>' +
+            '<option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option>' +
+          '</select>' +
+        '</div>' +
+        '<div class="cart-item-right">' +
+          '<div class="cart-item-price">' + fmtPrice(item.price) + '</div>' +
+          '<div class="cart-qty-row">' +
+            '<button class="qty-btn qty-minus">−</button>' +
+            '<span class="qty-num">' + item.qty + '</span>' +
+            '<button class="qty-btn qty-plus">+</button>' +
+          '</div>' +
+          '<button class="cart-item-remove" title="削除">×</button>' +
+        '</div>';
+      list.appendChild(row);
+
+      row.querySelector('.qty-minus').addEventListener('click', function () {
+        var it = cartItems.find(function (x) { return x.id === item.id; });
+        if (!it) return;
+        if (it.qty > 1) { it.qty--; renderCartItems(); updateBadge(); }
+        else { removeCartItem(item.id); }
+      });
+      row.querySelector('.qty-plus').addEventListener('click', function () {
+        var it = cartItems.find(function (x) { return x.id === item.id; });
+        if (it) { it.qty++; renderCartItems(); updateBadge(); }
+      });
+      row.querySelector('.cart-item-remove').addEventListener('click', function () {
+        removeCartItem(item.id);
+      });
+    });
+
+    totalAmt.textContent = fmtPrice(cartTotal());
+  }
+
+  function removeCartItem(id) {
+    cartItems = cartItems.filter(function (x) { return x.id !== id; });
+    var btn = document.querySelector('.c-item[data-id="' + id + '"] .c-add-btn');
+    if (btn) { btn.textContent = '+ ADD TO CART'; btn.classList.remove('added'); }
+    renderCartItems();
+    updateBadge();
+  }
+
+  function addToCart(id, name, nameJp, price, img) {
+    var existing = cartItems.find(function (x) { return x.id === id; });
+    if (existing) { existing.qty++; }
+    else { cartItems.push({ id: id, name: name, nameJp: nameJp, price: price, img: img, qty: 1 }); }
+    updateBadge();
+  }
+
   /* --- Cart / checkout panel --- */
   var cartPanel  = document.getElementById('cartPanel');
   var cartBd     = document.getElementById('cartBd');
   var cartClose  = document.getElementById('cartClose');
+  var cartClose2 = document.getElementById('cartClose2');
+  var cartBackBtn= document.getElementById('cartBackBtn');
+  var cartNextBtn= document.getElementById('cartNextBtn');
   var navCartBtn = document.getElementById('navCartBtn');
-  var cartSubmit = document.getElementById('cartSubmit');
+  var cartStep1  = document.getElementById('cartStep1');
+  var cartStep2  = document.getElementById('cartStep2');
   var cartForm   = document.getElementById('cartFormWrap');
   var cartOk     = document.getElementById('cartSuccess');
+  var cartSubmit = document.getElementById('cartSubmit');
 
   function openCart() {
+    cartStep1.style.display = '';
+    cartStep2.style.display = 'none';
+    cartForm.style.display  = '';
+    cartOk.classList.remove('show');
+    renderCartItems();
     cartPanel.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -1861,10 +2237,59 @@ footer {
     cartPanel.classList.remove('open');
     document.body.style.overflow = '';
   }
+  function goToCheckout() {
+    var summary = document.getElementById('orderSummary');
+    summary.innerHTML = '';
+    cartItems.forEach(function (item) {
+      var row = document.createElement('div');
+      row.className = 'order-summary-row';
+      row.innerHTML = '<span class="order-summary-name">' + item.name + ' × ' + item.qty + '</span>' +
+                      '<span class="order-summary-price">' + fmtPrice(item.price * item.qty) + '</span>';
+      summary.appendChild(row);
+    });
+    var tot = document.createElement('div');
+    tot.className = 'order-summary-total';
+    tot.innerHTML = '<span class="order-summary-total-lbl">TOTAL</span>' +
+                    '<span class="order-summary-total-amt">' + fmtPrice(cartTotal()) + '</span>';
+    summary.appendChild(tot);
+
+    cartStep1.style.display = 'none';
+    cartStep2.style.display = '';
+    cartStep2.parentElement.scrollTop = 0;
+  }
 
   navCartBtn.addEventListener('click', openCart);
   cartClose.addEventListener('click', closeCart);
+  cartClose2.addEventListener('click', closeCart);
   cartBd.addEventListener('click', closeCart);
+  cartNextBtn.addEventListener('click', goToCheckout);
+  cartBackBtn.addEventListener('click', function () {
+    cartStep2.style.display = 'none';
+    cartStep1.style.display = '';
+    renderCartItems();
+  });
+
+  /* Collection items: add-to-cart */
+  document.querySelectorAll('.c-item[data-id]').forEach(function (card) {
+    var btn = card.querySelector('.c-add-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var id     = card.dataset.id;
+      var name   = card.dataset.name;
+      var nameJp = card.dataset.nameJp;
+      var price  = parseInt(card.dataset.price, 10);
+      var img    = card.dataset.img;
+      addToCart(id, name, nameJp, price, img);
+      btn.textContent = '✓ ADDED';
+      btn.classList.add('added');
+      setTimeout(function () {
+        var it = cartItems.find(function (x) { return x.id === id; });
+        btn.textContent = it ? '+ ADD TO CART' : '+ ADD TO CART';
+        btn.classList.remove('added');
+      }, 1400);
+    });
+  });
 
   /* card number: auto-space every 4 digits */
   document.getElementById('f-card').addEventListener('input', function () {
@@ -1893,9 +2318,14 @@ footer {
     cartOk.classList.add('show');
     setTimeout(function () {
       closeCart();
-      /* reset after close */
       setTimeout(function () {
-        cartForm.style.display = '';
+        cartItems = [];
+        updateBadge();
+        document.querySelectorAll('.c-add-btn.added').forEach(function (b) {
+          b.textContent = '+ ADD TO CART';
+          b.classList.remove('added');
+        });
+        cartForm.style.display  = '';
         cartOk.classList.remove('show');
       }, 600);
     }, 2800);
